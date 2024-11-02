@@ -1,0 +1,86 @@
+{
+    "extends": "stylelint-config-standard-scss",
+    "plugins": [
+		"stylelint-order"
+	],
+	"rules": {
+		"order/properties-order": [
+			{
+				"groupName": "display",
+				"emptyLineBefore": "always",
+				"noEmptyLineBetween": true,
+				"properties": [
+					"display",
+					"top",
+					"left",
+					"bottom",
+					"right"
+				]
+			},
+			{
+				"groupName": "flex",
+				"emptyLineBefore": "always",
+				"noEmptyLineBetween": true,
+				"properties": [
+					"flex",
+					"flex-direction",
+					"flex-grow",
+					"flex-shrink",
+					"justify-content",
+					"align-items",
+					"justify-items",
+					"align-content"
+				]
+			},
+			{
+				"groupName": "dimensions",
+				"emptyLineBefore": "always",
+				"noEmptyLineBetween": true,
+				"properties": [
+					"height",
+					"width"
+				]
+			},
+			{
+				"groupName": "box",
+				"emptyLineBefore": "always",
+				"noEmptyLineBetween": true,
+				"properties": [
+					"margin",
+					"margin-left",
+					"margin-right",
+					"margin-top",
+					"margin-bottom",
+					"padding",
+					"padding-left",
+					"padding-right",
+					"padding-top",
+					"padding-bottom",
+					"border",
+					"border-radius"
+				]
+			},
+			{
+				"groupName": "colors",
+				"emptyLineBefore": "always",
+				"noEmptyLineBetween": true,
+				"properties": [
+					"color",
+					"background",
+					"background-color"
+				]
+			},
+			{
+				"groupName": "font",
+				"emptyLineBefore": "always",
+				"noEmptyLineBetween": true,
+				"properties": [
+					"font-size",
+					"font-weight",
+					"line-height"
+				]
+			}
+		],
+		"declaration-empty-line-before": null
+	}
+}

@@ -1,0 +1,36 @@
+html {
+  min-height: 100%;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-family: sans-serif;
+}
+
+body,
+#root {
+  min-height: 100dvh;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+a,
+button {
+  all: unset;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
