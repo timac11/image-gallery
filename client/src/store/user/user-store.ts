@@ -1,33 +1,63 @@
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { UserType } from '@/types/user.ts';
 import { AuthPayload } from '@/types/auth.ts';
 import { UserApiServiceType } from '@/api/user/user-api-service.ts';
 
 export class UserStore {
-  @observable user: UserType = undefined as unknown as UserType;
-  @observable isLoading = true;
-  @observable isAuthorized = false;
+  user: UserType = undefined as unknown as UserType;
+  isLoading = false;
+  isAuthorized = false;
+  isFetched = false;
 
-  constructor(private readonly userApiService: UserApiServiceType) {}
+  constructor(private readonly userApiService: UserApiServiceType) {
+    makeObservable(this, {
+      user: observable,
+      isLoading: observable,
+      isAuthorized: observable,
+      isFetched: observable,
+      setUser: action,
+      setLoading: action,
+      setAuthorized: action,
+    });
+  }
 
-  @action setUser(user: UserType) {
+  setUser(user: UserType) {
     this.user = user;
   }
 
-  @action setLoading(isLoading: boolean) {
+  setLoading(isLoading: boolean) {
     this.isLoading = isLoading;
   }
 
-  @action setAuthorized(isAuthorized: boolean) {
+  setFetched(isFetched: boolean) {
+    this.isFetched = isFetched;
+  }
+
+  setAuthorized(isAuthorized: boolean) {
     this.isAuthorized = isAuthorized;
   }
 
-  authUser = async (payload: AuthPayload): Promise<void> => {
+  login = async (payload: AuthPayload): Promise<void> => {
     this.setLoading(true);
 
     try {
-      const data = await this.userApiService.auth(payload);
+      const data = await this.userApiService.login(payload);
       this.setUser(data.data);
+    } catch (e) {
+      // log error
+      throw e;
+    } finally {
+      this.setLoading(false);
+    }
+  };
+
+  logout = async (): Promise<void> => {
+    this.setLoading(true);
+
+    try {
+      await this.userApiService.logout();
+      this.setUser(undefined as unknown as UserType);
+      this.setAuthorized(false);
     } catch (e) {
       // log error
       throw e;
@@ -42,11 +72,15 @@ export class UserStore {
     try {
       const data = await this.userApiService.fetchProfile();
       this.setUser(data.data);
+      this.setAuthorized(true);
     } catch (e) {
       // log error
+      this.setLoading(false);
+      this.setAuthorized(false);
       throw e;
     } finally {
       this.setLoading(false);
+      this.setFetched(true);
     }
   };
 }

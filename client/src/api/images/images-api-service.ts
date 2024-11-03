@@ -1,7 +1,7 @@
 import { ApiService } from '@/api/api.ts';
 import axiosApiService from '@/api/axios-api-service.ts';
 import { AxiosResponse } from 'axios';
-import {ImageType} from "@/types/image.ts";
+import { ImageType } from '@/types/image.ts';
 
 class ImagesApiService {
   private readonly api: ApiService;

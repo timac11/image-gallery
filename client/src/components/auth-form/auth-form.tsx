@@ -1,11 +1,9 @@
 import React from 'react';
 import type { FormProps } from 'antd';
 import { Button, Form, Input } from 'antd';
+import { AuthPayload } from '@/types/auth.ts';
 
-type FieldType = {
-  email?: string;
-  password?: string;
-};
+type FieldType = AuthPayload;
 
 interface IProps {
   onFinish: FormProps<FieldType>['onFinish'];

@@ -1,19 +1,27 @@
 import { ImagesApiServiceType } from '@/api/images/images-api-service';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { ImageType } from '@/types/image';
 
 export class ImagesStore {
-  @observable isUploading = false;
-  @observable imagesLoading = false;
-  @observable images: ImageType[] = [];
+  isUploading = false;
+  imagesLoading = false;
+  images: ImageType[] = [];
 
-  constructor(private readonly imagesApiService: ImagesApiServiceType) {}
+  constructor(private readonly imagesApiService: ImagesApiServiceType) {
+    makeObservable(this, {
+      isUploading: observable,
+      imagesLoading: observable,
+      images: observable,
+      setImagesLoading: action,
+      setImages: action,
+    });
+  }
 
-  @action setImagesLoading(value: boolean) {
+  setImagesLoading(value: boolean) {
     this.imagesLoading = value;
   }
 
-  @action setImages(images: ImageType[]) {
+  setImages(images: ImageType[]) {
     this.images = images;
   }
 

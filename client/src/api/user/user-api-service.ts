@@ -11,8 +11,12 @@ class UserApiService {
     this.api = apiService;
   }
 
-  public auth(authPayload: AuthPayload): Promise<AxiosResponse<UserType>> {
-    return this.api.post<AxiosResponse<UserType>, AuthPayload>('/auth', authPayload);
+  public login(authPayload: AuthPayload): Promise<AxiosResponse<UserType>> {
+    return this.api.post<AxiosResponse<UserType>, AuthPayload>('/login', authPayload);
+  }
+
+  public logout(): Promise<AxiosResponse<void>> {
+    return this.api.post<AxiosResponse<void>, undefined>('/logout');
   }
 
   public fetchProfile(): Promise<AxiosResponse<UserType>> {

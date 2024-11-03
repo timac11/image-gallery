@@ -1,3 +1,10 @@
+import { Layout } from '@/components/layout/layout.tsx';
+import { Row } from 'antd';
+
 export const PhotosPage = () => {
-  return <div>Photos Page</div>;
+  return (
+    <Layout>
+      <Row>Photos Page</Row>
+    </Layout>
+  );
 };
