@@ -43,6 +43,7 @@ export class UserStore {
     try {
       const data = await this.userApiService.login(payload);
       this.setUser(data.data);
+      this.setAuthorized(true);
     } catch (e) {
       // log error
       throw e;
