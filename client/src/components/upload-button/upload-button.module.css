@@ -1,0 +1,16 @@
+.uploadText {
+    margin: 0 0 4px;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 16px;
+}
+
+.uploadSubtitleText {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 14px;
+}
+
+.draggerIcon {
+    color: #1677ff;
+    font-size: 48px;
+    margin-left: 12px;
+}

@@ -15,4 +15,6 @@
     margin: 0 auto;
     flex: 1;
     background: white;
+    display: flex;
+    flex-direction: column;
 }

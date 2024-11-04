@@ -19,7 +19,7 @@ class LoginView(APIView):
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
         user_auth = authenticate(request, username=user.username, password=password)
 
@@ -28,7 +28,7 @@ class LoginView(APIView):
                 login(request, user)
                 return Response({'detail': 'Logged in successfully.'}, status=status.HTTP_200_OK)
         else:
-            return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProfileView(APIView):
