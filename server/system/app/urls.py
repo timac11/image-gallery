@@ -7,6 +7,6 @@ urlpatterns = [
     path('logout', LogoutView.as_view()),
     path('profile', ProfileView.as_view()),
     path('images', ImagesView.as_view()),
+    path('images/upload', FileUploadView.as_view()),
     path('images/<str:file_name>', DownloadImageView.as_view()),
-    path('upload-file', FileUploadView.as_view()),
 ]

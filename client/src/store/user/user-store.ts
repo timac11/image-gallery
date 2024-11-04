@@ -9,7 +9,10 @@ export class UserStore {
   isAuthorized = false;
   isFetched = false;
 
-  constructor(private readonly userApiService: UserApiServiceType) {
+  constructor(
+    private readonly userApiService: UserApiServiceType,
+    private clearStores: () => void,
+  ) {
     makeObservable(this, {
       user: observable,
       isLoading: observable,
@@ -57,8 +60,7 @@ export class UserStore {
 
     try {
       await this.userApiService.logout();
-      this.setUser(undefined as unknown as UserType);
-      this.setAuthorized(false);
+      this.clearStores();
     } catch (e) {
       // log error
       throw e;
@@ -83,5 +85,12 @@ export class UserStore {
       this.setLoading(false);
       this.setFetched(true);
     }
+  };
+
+  clear = () => {
+    this.user = undefined as unknown as UserType;
+    this.isLoading = false;
+    this.isAuthorized = false;
+    this.isFetched = false;
   };
 }

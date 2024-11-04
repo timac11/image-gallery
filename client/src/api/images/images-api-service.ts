@@ -14,8 +14,10 @@ class ImagesApiService {
     return this.api.get<AxiosResponse<ImageType[]>>('/images');
   }
 
-  public uploadImage(): Promise<AxiosResponse<void>> {
-    return this.api.post<AxiosResponse<void>>('/upload');
+  public uploadImage(form: FormData): Promise<AxiosResponse<void>> {
+    return this.api.post<AxiosResponse<void>, FormData>('/images/upload', form, {
+      headers: { 'content-type': 'multipart/form-data' },
+    });
   }
 }
 

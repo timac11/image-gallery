@@ -9,9 +9,14 @@ export class Store {
   readonly imagesStore: ImagesStore;
 
   constructor() {
-    this.userStore = new UserStore(userApiService);
+    this.userStore = new UserStore(userApiService, this.clear);
     this.imagesStore = new ImagesStore(imagesApiService);
   }
+
+  private clear = () => {
+    this.userStore.clear();
+    this.imagesStore.clear();
+  };
 }
 
 export const StoreContext = createContext(new Store());
