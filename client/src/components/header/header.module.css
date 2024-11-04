@@ -1,6 +1,15 @@
 .container {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     padding: 8px 12px;
+}
+
+.content {
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: auto;
+    padding: 0 24px;
 }

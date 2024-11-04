@@ -1,4 +1,4 @@
-import { Button, Layout as AntLayout } from 'antd';
+import { Button, Layout as AntLayout, Row } from 'antd';
 import React from 'react';
 
 import styles from './header.module.css';
@@ -13,9 +13,11 @@ interface IProps {
 export const Header: React.FC<IProps> = ({ logout, isLoading }) => {
   return (
     <AntHeader className={styles.container}>
-      <Button onClick={logout} loading={isLoading}>
-        Logout
-      </Button>
+      <Row className={styles.content}>
+        <Button onClick={logout} loading={isLoading}>
+          Logout
+        </Button>
+      </Row>
     </AntHeader>
   );
 };
