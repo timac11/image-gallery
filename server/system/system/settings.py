@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-+bhfa!rz4353jn)1p4*1*zhk2xh*3v*cbk6nv%k@-1j#kw&rf-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'application']
 
 
 # Application definition
@@ -140,4 +140,4 @@ S3_SECRET_KEY = os.environ.get('S3_SECRET_KEY')
 S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
 S3_ENDPOINT_URL = os.environ.get('S3_ENDPOINT_URL')
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
+CSRF_TRUSTED_ORIGINS = ['http://localhost']

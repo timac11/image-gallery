@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    image: images-back
+    command: sh -c "python3 manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - sqlite_data:/app/system/db.sqlite3
+    ports:
+      - "8000:8000"
+
+  ui:
+    image: images-ui
+    ports:
+      - "80:80"
+
+volumes:
+  sqlite_data:
+    driver: local
