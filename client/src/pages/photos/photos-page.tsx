@@ -5,19 +5,17 @@ const { Title } = Typography;
 import styles from './photos-page.module.css';
 import { UploadButton } from '@/components/upload-button/upload-button.tsx';
 import { PhotosList } from '@/pages/photos/widgets/photos-list/photos-list.tsx';
-
-function getCookie(name: string): string {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts[1].split(';').shift() as string;
-  return '';
-}
+import { Header } from '@/components/header/header.tsx';
+import { useStore } from '@/store/use-store.ts';
+import { getCookie } from '@/lib/cookie.ts';
 
 export const PhotosPage = () => {
   const csrftoken = getCookie('csrftoken');
 
+  const { userStore } = useStore();
+
   return (
-    <Layout>
+    <Layout header={<Header isLoading={userStore.isLoading} logout={userStore.logout} />}>
       <Row className={styles.container}>
         <Title level={2}>Your images</Title>
         <UploadButton

@@ -3,6 +3,8 @@ import type { FormProps } from 'antd';
 import { Button, Form, Input } from 'antd';
 import { AuthPayload } from '@/types/auth.ts';
 
+import styles from './auth-form.module.css';
+
 type FieldType = AuthPayload;
 
 interface IProps {
@@ -11,7 +13,7 @@ interface IProps {
 
 export const AuthForm: React.FC<IProps> = ({ onFinish }) => {
   return (
-    <Form name="basic" onFinish={onFinish} autoComplete="off">
+    <Form className={styles.form} layout="vertical" onFinish={onFinish}>
       <Form.Item<FieldType>
         label="Email"
         name="email"

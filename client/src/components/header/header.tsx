@@ -5,10 +5,17 @@ import styles from './header.module.css';
 
 const { Header: AntHeader } = AntLayout;
 
-export const Header: React.FC = () => {
+interface IProps {
+  logout: () => Promise<void>;
+  isLoading?: boolean;
+}
+
+export const Header: React.FC<IProps> = ({ logout, isLoading }) => {
   return (
     <AntHeader className={styles.container}>
-      <Button>Logout</Button>
+      <Button onClick={logout} loading={isLoading}>
+        Logout
+      </Button>
     </AntHeader>
   );
 };
