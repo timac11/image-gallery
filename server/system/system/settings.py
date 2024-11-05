@@ -140,4 +140,4 @@ S3_SECRET_KEY = os.environ.get('S3_SECRET_KEY')
 S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
 S3_ENDPOINT_URL = os.environ.get('S3_ENDPOINT_URL')
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost']
+CSRF_TRUSTED_ORIGINS = ['http://87.239.108.226']
