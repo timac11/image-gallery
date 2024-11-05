@@ -9,9 +9,10 @@ type FieldType = AuthPayload;
 
 interface IProps {
   onFinish: FormProps<FieldType>['onFinish'];
+  isLoading: boolean;
 }
 
-export const AuthForm: React.FC<IProps> = ({ onFinish }) => {
+export const AuthForm: React.FC<IProps> = ({ onFinish, isLoading }) => {
   return (
     <Form className={styles.form} layout="vertical" onFinish={onFinish}>
       <Form.Item<FieldType>
@@ -40,8 +41,8 @@ export const AuthForm: React.FC<IProps> = ({ onFinish }) => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" loading={isLoading}>
+          Log in
         </Button>
       </Form.Item>
     </Form>

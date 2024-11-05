@@ -32,7 +32,7 @@ export const AuthPage = () => {
     <Layout>
       <Row className={styles.container}>
         <Title level={2}>Login:</Title>
-        <AuthForm onFinish={login} />
+        <AuthForm onFinish={login} isLoading={userStore.isLoading} />
       </Row>
     </Layout>
   );
