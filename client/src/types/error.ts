@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 interface ServerErrorPayload {
-  detail: string | string[];
+  detail: string;
 }
 
 export type ServerError = AxiosError<ServerErrorPayload>;

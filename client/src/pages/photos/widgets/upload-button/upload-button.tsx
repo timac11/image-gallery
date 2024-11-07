@@ -6,25 +6,34 @@ import styles from './upload-button.module.css';
 import { showServerErrorNotifications } from '@/lib/error.ts';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '@/store/use-store.ts';
-import { UploadRequestFile } from 'rc-upload/lib/interface';
 
 const { Dragger } = Upload;
 const { Title } = Typography;
+
+import { UploadRequestOption } from 'rc-upload/lib/interface';
+import { ServerError } from '@/types/error.ts';
 
 export const UploadButton: React.FC = observer(() => {
   const [modalOpened, setModalOpened] = React.useState(false);
   const { imagesStore } = useStore();
 
   const uploadImage = React.useCallback(
-    ({ file }: { file: UploadRequestFile }) => {
+    ({ file, onError }: UploadRequestOption) => {
       imagesStore
         .uploadImage(file)
         .then(() => {
           notification.success({ message: 'Image successfully uploaded!' });
+          setModalOpened(false);
         })
-        .catch(showServerErrorNotifications)
-        .finally(() => setModalOpened(false))
-        .then(imagesStore.fetchImages);
+        .then(imagesStore.fetchImages)
+        .catch((error: ServerError) => {
+          showServerErrorNotifications(error);
+          onError?.({
+            status: error.status,
+            name: error.name,
+            message: error.response?.data.detail || 'Upload Error',
+          });
+        });
     },
     [imagesStore],
   );
@@ -43,7 +52,7 @@ export const UploadButton: React.FC = observer(() => {
       >
         <Title level={4}>Select File</Title>
 
-        <Dragger customRequest={uploadImage} accept="image/*" maxCount={1}>
+        <Dragger onChange={console.log} customRequest={uploadImage} accept="image/*" maxCount={1}>
           <InboxOutlined className={styles.draggerIcon} />
           <p className={styles.uploadText}>Click or drag image to this area to upload</p>
           <p className={styles.uploadSubtitleText}>Upload image less or equal 5 MB</p>
