@@ -19,10 +19,10 @@ export const UploadButton: React.FC = observer(() => {
     ({ file }: { file: UploadRequestFile }) => {
       imagesStore
         .uploadImage(file)
-        .catch(showServerErrorNotifications)
         .then(() => {
           notification.success({ message: 'Image successfully uploaded!' });
         })
+        .catch(showServerErrorNotifications)
         .finally(() => setModalOpened(false))
         .then(imagesStore.fetchImages);
     },
